@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="row">
+    <div class="col-md-11 col-md-offset-1">
+        <h1>{{movie.title}} ({{movie.year}})</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-1">
+        <img class="img-responsive img-rounded" src="{{movie.image_url}}">
+    </div>
+    <div class="col-md-6">
+        <p>{{movie.description}}</p>
+    </div>
+</div>
+{% if  current_user.is_authenticated %}
+<div class="row">
+    <div class="col-md-2 col-md-offset-1 margin-top">
+        <a class="btn btn-default" href="{{url_for('main.edit_movie', movie_title=movie.title)}}">Edit</a>
+        <a class="btn btn-danger pull-right" href="{{url_for('main.delete_movie', movie_title=movie.title)}}">Delete</a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

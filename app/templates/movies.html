@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="row">
+    <div class="col-md-3">
+        <h1>Categories</h1>
+        <div class="list-group">
+            {% for genre in genres %}
+            <a class="list-group-item" href="{{url_for('main.movies', genre_name=genre.name)}}">{{genre.name}}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <h1>{{genre_name}} Movies ({{movies|length}} Movies)</h1>
+        </div>
+        <div class="row">
+            {% if current_user.is_authenticated and genre_name %}
+                <a class="btn btn-default margin-bottom" href="{{url_for('main.create_movie', genre_name=genre_name)}}">Add</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="list-group">
+                {% for movie in movies %}
+                <a class="list-group-item"
+                   href="{{url_for('main.movie', genre_name=movie.genre_name, movie_title=movie.title)}}">{{movie.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
