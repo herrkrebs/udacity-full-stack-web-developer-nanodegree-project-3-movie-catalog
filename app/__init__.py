@@ -20,7 +20,7 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'voll geheim!'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///catalog.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/catalog'
 
     app.config['GITHUB_CLIENT_ID'] = 'd73ccb593f271410d8a6'
     app.config['GITHUB_CLIENT_SECRET'] = 'b33db87574d91ec86296a1a52871e1ec66c1f69b'
