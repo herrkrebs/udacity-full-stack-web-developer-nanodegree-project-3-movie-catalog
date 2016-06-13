@@ -22,8 +22,13 @@ def init_db():
 
 
 @manager.command
-def start():
+def debug():
     app.run(host='0.0.0.0', debug=True)
+
+
+@manager.command
+def production():
+    app.run()
 
 
 if __name__ == '__main__':
