@@ -10,7 +10,7 @@ from ..models import Genre, Movie
 
 
 @main.route('/')
-@main.route('/cataldog')
+@main.route('/catalog')
 def index():
     genres = Genre.query.order_by('name asc').all()
     latest_movies = Movie.query.order_by('id desc').limit(10).all()
