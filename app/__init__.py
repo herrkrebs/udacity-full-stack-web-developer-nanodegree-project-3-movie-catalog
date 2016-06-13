@@ -1,10 +1,12 @@
 # Application factory
 
+import os
+
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_github import GitHub
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from flask_github import GitHub
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -19,11 +21,13 @@ def create_app():
     """ Creates the app and initializes the components """
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'voll geheim!'
+    app.config['SECRET_KEY'] = os.environ.get(
+        'catalog_secret_key') or 'voll geheim!'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/catalog'
 
-    app.config['GITHUB_CLIENT_ID'] = 'd73ccb593f271410d8a6'
-    app.config['GITHUB_CLIENT_SECRET'] = 'b33db87574d91ec86296a1a52871e1ec66c1f69b'
+    app.config['GITHUB_CLIENT_ID'] = os.environ.get('catalog_github_client_id')
+    app.config['GITHUB_CLIENT_SECRET'] = os.environ.get(
+        'catalog_github_client_secret')
 
     bootstrap.init_app(app)
     db.init_app(app)
