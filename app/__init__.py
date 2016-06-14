@@ -23,8 +23,11 @@ def create_app():
 
     app.config['SECRET_KEY'] = os.environ.get(
         'catalog_secret_key') or 'voll geheim!'
+
+    postgresql_password = os.environ.get('catalog_postgresql_password')
     app.config[
-        'SQLALCHEMY_DATABASE_URI'] = 'postgresql://catalog@localhost/catalog'
+        'SQLALCHEMY_DATABASE_URI'] = 'postgresql://catalog:' + \
+                                     postgresql_password + '@localhost/catalog'
 
     app.config['GITHUB_CLIENT_ID'] = os.environ.get('catalog_github_client_id')
     app.config['GITHUB_CLIENT_SECRET'] = os.environ.get(
