@@ -5,3 +5,4 @@ flask-script
 flask-wtf
 flask-bootstrap
 github-flask
+psycopg2
