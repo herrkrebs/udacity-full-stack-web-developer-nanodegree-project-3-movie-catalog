@@ -3,7 +3,7 @@
 from flask import render_template, redirect, request, flash, jsonify, url_for
 from flask_login import login_required
 
-from app.main.forms import MovieForm
+from .forms import MovieForm
 from . import main
 from .. import db
 from ..models import Genre, Movie
